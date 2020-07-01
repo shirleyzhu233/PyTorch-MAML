@@ -32,11 +32,11 @@ Beyond reproducing the results, our implementation comes with a few extra bits t
 
 The official implementation assumes transductive learning. The batch normalization layers do not track running statistics at training time, and they use mini-batch statistics at test time. The implicit assumption here is that test data come in mini-batches and are perhaps balanced across categores. This is a very restrictive assumption and does not land MAML directly comparable with the vast majority of meta-learning and few-shot learning methods. Unfortunately, this is not immediately obvious from the paper, and our findings suggest that the performance of MAML is hugely overestimated.
 
-- Accuracy is very sensitive to the size of query set in the transductive setting. For example, the result for 5-way-1-shot classification on miniImageNet from the paper (48.70%) was obtained on five queries, one per category. We found that the accuracy dropped by ~1.5% given five queries per category, and by ~2.5% given 15 queries per category.
+- **Accuracy is very sensitive to the size of query set in the transductive setting.** For example, the result for 5-way-1-shot classification on miniImageNet from the paper (48.70%) was obtained on five queries, one per category. We found that the accuracy dropped by ~1.5% given five queries per category, and by ~2.5% given 15 queries per category.
 
-- The paper reports mean accuracy over 600 independently sampled tasks, or trials. We found that 600 trials, again in the transductive setting, are insufficient for an unbiased estimate of model performance. The mean accuracy from 6,000 trails is more stable, and is always ~2% lower than that from the first 600 trials. We conjecture that the distribution of per-trial accuracy is highly skewed toward the high end.
+- The paper reports mean accuracy over 600 independently sampled tasks, or trials. We found that **600 trials, again in the transductive setting, are insufficient for an unbiased estimate of model performance**. The mean accuracy from 6,000 trails is more stable, and is always ~2% lower than that from the first 600 trials. We conjecture that the distribution of per-trial accuracy is highly skewed toward the high end.
 
-- We found that MAML performs a lot worse in the inductive setting. Given the same model configuration, inductive accuracy is always much lower (~4%) than the *corrected* transductive accuracy, which is already a few percentage points behind the reported number.
+- We found that **MAML performs a lot worse in the inductive setting**. Given the same model configuration, inductive accuracy is always much lower (~4%) than the *corrected* transductive accuracy, which is already a few percentage points behind the reported number.
 
 Hence, one should be extremely cautious when comparing MAML with its competitors as is evident from the discussion above.
 
