@@ -50,7 +50,7 @@ Unfortunately, some insights discussed in the original paper and its follow-up w
 
 ## BatchNorm and TaskNorm
 
-[A recent work](https://arxiv.org/abs/2003.03284) proposes a test-time enhancement of batchnorms, noting that the small batch sizes during training may leave batch normalization less effective. We did not have much success with this method. We observed marginal improvement most of the time, and found that it hurt performance occationally. That said, we do believe that batch normalization is hard to deal with in MAML. TaskNorm attempts to attack the problem of small batch sizes, which we conjecture is just one among the three causes (i.e., extremely scarse training data, extremely small batch sizes, and extremely small number of inner-loop updates) of the ineffectiveness of batch normalization in MAML.
+[A recent work](https://arxiv.org/abs/2003.03284) proposes a test-time enhancement of batchnorms, noting that the small batch sizes during training may leave batch normalization less effective. We did not have much success with this method. We observed marginal improvement most of the time, and found that it hurts performance occationally. That said, we do believe that batch normalization is hard to deal with in MAML. TaskNorm attempts to attack the problem of small batch sizes, which we conjecture is just one among the three main causes (i.e., extremely scarse training data, extremely small batch sizes, and extremely small number of inner-loop updates) of the ineffectiveness of batch normalization in MAML.
 
 ## Quick Start
 
@@ -81,12 +81,12 @@ Use `-gpu` to specify available GPUs for multi-GPU training. For example,
 python train.py --config=configs/convnet4/mini-imagenet/train_reproduce.yaml --gpu=0,1
 ```
 
-Add '-efficient' to enable gradient checkpointing. This aggresively saves GPU memory while slightly increases running time.
+Add `-efficient` to enable gradient checkpointing. This aggressively saves GPU memory while slightly increases running time.
 ```
 python train.py --config=configs/convnet4/mini-imagenet/train_reproduce.yaml --efficient
 ```
 
-Use '-tag' to customize the name of the directory where the checkpoints and log files are saved.
+Use `-tag` to customize the name of the directory where the checkpoints and log files are saved.
 
 ### 2. Testing MAML
 Here is how one would test MAML for 5-way-1-shot classification on mini-ImageNet to reproduce the result in the original paper. Please confirm the loading path first.
