@@ -42,7 +42,7 @@ Hence, one should be extremely cautious when comparing MAML with its competitors
 
 ## FOMAML and layer freezing
 
-Unfortunately, some insights discussed in the original paper and its follow-up works do not hold in the inductive setting. 
+Unfortunately, some insights discussed in the original paper and its follow-up works do not appear to hold in the inductive setting. 
 
 - FOMAML (i.e. the first-order approximation of MAML) performs as well as MAML in transductive learning, but fails completely in the inductive setting. 
 
