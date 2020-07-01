@@ -8,7 +8,7 @@ This repository contains code for training and evaluating MAML on the mini-Image
 
 Beyond reproducing the results, our implementation comes with a few extra bits that we believe can be helpful for further development of the framework. We highlight the improvements we have built into our code, and discuss our observations that warrent some attention.
 
-### Implementation Highlights
+## Implementation Highlights
 
 - **Batch normalization with per-episode running statistics.** Our implementation provides flexibility of tracking global and/or per-episode running statistics, hence supporting both transductive and inductive inference.
 
@@ -26,7 +26,7 @@ Beyond reproducing the results, our implementation comes with a few extra bits t
 
 - **Distributed training and gradient checkpointing.** MAML is very memory intensive because it buffers all tensors generated throughout the inner-loop adaptation. Gradient checkpointing trades compute for memory. It saves up to 80% of GPU memory at the cost of running the forward pass more than once (a moderate 20% increase in running time).
 
-### Transductive or Inductive?
+## Transductive or Inductive?
 
 The official implementation assumes transductive learning. The batch normalization layers do not track running statistics at training time, and they use mini-batch statistics at test time. The implicit assumption here is that test data come in mini-batches and are perhaps balanced across categores. This is a very restrictive assumption and does not land MAML directly comparable with the vast majority of meta-learning and few-shot learning methods. Unfortunately, this is not immediately obvious from the paper, and our findings suggest that the performance of MAML is hugely overestimated.
 
@@ -38,7 +38,7 @@ The official implementation assumes transductive learning. The batch normalizati
 
 Hence, one should be extremely cautious when comparing MAML with its competitors as is evident from the discussion above.
 
-### FOMAML and layer freezing
+## FOMAML and layer freezing
 
 Unfortunately, some insights discussed in the original paper and its follow-up works do not hold in the inductive setting. 
 
@@ -51,14 +51,17 @@ Unfortunately, some insights discussed in the original paper and its follow-up w
 ### 0. Preliminaries
 
 **Environment**
+
 - Python 3.6.8 (or any Python 3 distribution)
 - PyTorch 1.3.1 (or any PyTorch > 1.0)
 - tensorboardX
 
 **Datasets**
+
 Please follow the download links [here](https://github.com/cyvius96/few-shot-meta-baseline). Please modify the file names accordingly so that they can be recognized by the data loaders.
 
 **Configurations**
+
 Template configuration files as well as those for reproducing the results in the original paper can be found in `configs/`. The hyperparameters are self-explanatory.
 
 ### 1. Training MAML
@@ -85,7 +88,7 @@ Here is how one would test MAML for 5-way-1-shot classification on mini-ImageNet
 python test.py --config=configs/convnet4/mini-imagenet/test_reproduce.yaml
 ```
 
-The `-gpu` and '-efficient' tags function similarly as in training.
+The `-gpu` and `-efficient` tags function similarly as in training.
 
 ## Contact
 [Fangzhou Mu](http://pages.cs.wisc.edu/~fmu/) (fmu2@wisc.edu)
