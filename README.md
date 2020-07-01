@@ -4,7 +4,7 @@ A PyTorch implementation of [Model Agnostic Meta-Learning (MAML)](https://arxiv.
 
 ## Overview
 
-This repository contains code for training and evaluating MAML on the mini-ImageNet and tiered-ImageNet datasets most commonly used for few-shot image classification. To the best of our knowledge, this is the only PyTorch implementation of MAML to date that **fully reproduces the results in the original paper** without applying tricks such as data augmentation, evaluation of multiple crops, and ensemble of multiple models. Other available PyTorch implementation typically sees a ~3% gap in accuracy for the 5-way-1-shot and 5-way-5-shot classification tasks on mini-ImageNet.
+This repository contains code for training and evaluating MAML on the mini-ImageNet and tiered-ImageNet datasets most commonly used for few-shot image classification. To the best of our knowledge, this is the only PyTorch implementation of MAML to date that **fully reproduces the results in the original paper** without applying tricks such as data augmentation, evaluation on multiple crops, and ensemble of multiple models. Other existing PyTorch implementations typically see a ~3% gap in accuracy for the 5-way-1-shot and 5-way-5-shot classification tasks on mini-ImageNet.
 
 Beyond reproducing the results, our implementation comes with a few extra bits that we believe can be helpful for further development of the framework. We highlight the improvements we have built into our code, and discuss our observations that warrent some attention.
 
@@ -13,6 +13,8 @@ Beyond reproducing the results, our implementation comes with a few extra bits t
 - **Batch normalization with per-episode running statistics.** Our implementation provides flexibility of tracking global and/or per-episode running statistics, hence supporting both transductive and inductive inference.
 
 - **Better data pre-processing.** The official implementation does not normalize and augment data. We support data normalization and a variety of data augmentation techniques. We also implement data batching and support/query-set splitting in an efficient way.
+
+- **More datasets.** We support mini-ImageNet, tiered-ImageNet and more.
 
 - **More options for outer-loop optimization.** We support mutiple optimizers and learning-rate schedulers for the outer-loop optimization.
 
