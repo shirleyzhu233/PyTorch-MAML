@@ -1,0 +1,41 @@
+dataset: meta-tiered-imagenet
+train:
+  split: meta-train
+  image_size: 84
+  normalization: False
+  transform: null
+  n_batch: 200
+  n_episode: 4
+  n_way: 5
+  n_shot: 1
+  n_query: 15
+val:
+  split: meta-val
+  image_size: 84
+  normalization: False
+  transform: null
+  n_batch: 200
+  n_episode: 4
+  n_way: 5
+  n_shot: 1
+  n_query: 15
+
+encoder: wide-convnet4
+encoder_args:
+  bn_args:
+    track_running_stats: False
+classifier: logistic
+
+inner_args:
+  n_step: 5
+  encoder_lr: 0.01
+  classifier_lr: 0.01
+  first_order: False  # set to True for FOMAML
+  frozen:
+    - bn
+
+optimizer: adam
+optimizer_args:
+  lr: 0.001
+
+epoch: 300

@@ -1,0 +1,24 @@
+dataset: meta-tiered-imagenet
+test:
+  split: meta-test
+  image_size: 84
+  normalization: True
+  transform: flip
+  n_batch: 200
+  n_episode: 4
+  n_way: 5
+  n_shot: 5
+  n_query: 15
+
+load: ./save/wide-convnet4_tiered-imagenet_5_way_5_shot/max-va.pth
+
+inner_args:
+  reset_classifier: True
+  n_step: 5
+  encoder_lr: 0.01
+  classifier_lr: 0.01
+  momentum: 0.9
+  weight_decay: 5.e-4
+  first_order: False
+
+epoch: 10

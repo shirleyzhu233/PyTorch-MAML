@@ -1,0 +1,52 @@
+dataset: meta-tiered-imagenet
+train:
+  split: meta-train
+  image_size: 84
+  normalization: True
+  transform: flip
+  n_batch: 200
+  n_episode: 4
+  n_way: 5
+  n_shot: 5
+  n_query: 15
+val:
+  split: meta-val
+  image_size: 84
+  normalization: True
+  transform: flip
+  n_batch: 200
+  n_episode: 4
+  n_way: 5
+  n_shot: 5
+  n_query: 15
+
+encoder: wide-convnet4
+encoder_args:
+  bn_args:
+    track_running_stats: True
+    episodic:
+      - conv1
+      - conv2
+      - conv3
+      - conv4
+classifier: logistic
+
+inner_args:
+  reset_classifier: True
+  n_step: 5
+  encoder_lr: 0.01
+  classifier_lr: 0.01
+  momentum: 0.9
+  weight_decay: 5.e-4
+  first_order: False
+
+optimizer: sgd
+optimizer_args:
+  lr: 0.01
+  weight_decay: 5.e-4
+  schedule: step
+  milestones:
+    - 120
+    - 140
+
+epoch: 150

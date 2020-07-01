@@ -1,0 +1,23 @@
+dataset: meta-mini-imagenet
+test:
+  split: meta-test
+  image_size: 84
+  normalization: False
+  transform: null
+  n_batch: 150
+  n_episode: 4
+  n_way: 5
+  n_shot: 1
+  n_query: 1
+
+load: ./save/convnet4_mini-imagenet_5_way_1_shot/max-va.pth
+
+inner_args:
+  n_step: 10
+  encoder_lr: 0.01
+  classifier_lr: 0.01
+  first_order: False  # set to True for FOMAML
+  frozen:
+    - bn
+
+epoch: 1
