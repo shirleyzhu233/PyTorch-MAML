@@ -26,7 +26,7 @@ Beyond reproducing the results, our implementation comes with a few extra bits t
 
 - **Meta-learning with zero-initialized classifier head.** The official implementation learns a meta-initialization for both the encoder and the classifier head. This prevents one from varying the number of categories at training or test time. With our implementation, one may opt to learn a meta-initialization for the encoder while initializing the classifier head to zero.
 
-- **Distributed training and gradient checkpointing.** MAML is very memory-intensive because it buffers all tensors generated throughout the inner-loop adaptation steps. Gradient checkpointing trades compute for memory, effectively brings the memory cost from O(N) to O(1), where N is the number of inner-loop steps. In our experiments, gradient checkpointing saves up to 80% of GPU memory at the cost of running the forward pass more than once (a moderate 20% increase in running time).
+- **Distributed training and gradient checkpointing.** MAML is very memory-intensive because it buffers all tensors generated throughout the inner-loop adaptation steps. Gradient checkpointing trades compute for memory, effectively bringing the memory cost from O(N) down to O(1), where N is the number of inner-loop steps. In our experiments, gradient checkpointing saves up to 80% of GPU memory at the cost of running the forward pass more than once (a moderate 20% increase in running time).
 
 ## Transductive or Inductive?
 
