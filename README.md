@@ -12,7 +12,7 @@ Beyond reproducing the results, our implementation comes with a few extra bits t
 
 - **Batch normalization with per-episode running statistics.** Our implementation provides flexibility of tracking global and/or per-episode running statistics, hence supporting both transductive and inductive inference.
 
-- **Better data pre-processing.** The official implementation does not normalize and augment data. We support data normalization and a variety of data augmentation techniques. We also implement data batching and support/query-set splitting in an efficient way.
+- **Better data pre-processing.** The official implementation does not normalize and augment data. We support data normalization and a variety of data augmentation techniques. We also implement data batching and support/query-set splitting more efficiently.
 
 - **More datasets.** We support mini-ImageNet, tiered-ImageNet and more.
 
@@ -20,9 +20,9 @@ Beyond reproducing the results, our implementation comes with a few extra bits t
 
 - **More powerful inner-loop optimization.** The official implementation uses vanilla gradient descent in the inner loop. Our code allows momentum and weight decay.
 
-- **More options for encoder architecture.** Our implementation supports the standard four-layer ConvNet as well as ResNet-12 and ResNet-18 as the encoder.
+- **More options for encoder architecture.** We support the standard four-layer ConvNet as well as ResNet-12 and ResNet-18 as the encoder.
 
-- **Easy layer freezing.** Our implementation provides an interface for layer freezing experiments. One may freeze an arbitrary set of layers or blocks during inner-loop adaptation.
+- **Easy layer freezing.** We provide an interface for layer freezing experiments. One may freeze an arbitrary set of layers or blocks during inner-loop adaptation.
 
 - **Meta-learning with zero-initialized classifier head.** The official implementation learns a meta-initialization for both the encoder and the classifier head. This prevents one from varying the number of categories at training or test time. With our implementation, one may opt to learn a meta-initialization for the encoder while initializing the classifier head to zero.
 
@@ -47,6 +47,10 @@ Unfortunately, some insights discussed in the original paper and its follow-up w
 - FOMAML (i.e. the first-order approximation of MAML) performs as well as MAML in transductive learning, but fails completely in the inductive setting. 
 
 - Completely freezing the encoder during inner-loop adaption as was done in [this work](https://arxiv.org/abs/1909.09157) results in dramatic decrease in accuracy.
+
+## BatchNorm and TaskNorm
+
+[A recent work](https://arxiv.org/abs/2003.03284) proposes a test-time enhancement of batchnorms, noting that the small batch sizes during training may leave batch normalization less effective. We did not have much success with this method. We observed marginal improvement most of the time, and found that it hurt performance occationally. That said, we do believe that batch normalization is hard to deal with in MAML. TaskNorm attempts to attack the problem of small batch sizes, which we conjecture is just one among the three causes (i.e., extremely scarse training data, extremely small batch sizes, and extremely small number of inner-loop updates) of the ineffectiveness of batch normalization in MAML.
 
 ## Quick Start
 
@@ -127,5 +131,12 @@ Our implementation is inspired by the following repositories.
   author={Raghu, Aniruddh and Raghu, Maithra and Bengio, Samy and Vinyals, Oriol},
   booktitle={International Conference on Learning Representations (ICLR)},
   year={2019}
+}
+
+@article{Bronskill2020tasknorm,
+  title={Tasknorm: rethinking batch normalization for meta-learning},
+  author={Bronskill, John and Gordon, Jonathan and Requeima, James and Nowozin, Sebastian and Turner, Richard E.},
+  journal={arXiv preprint arXiv:2003.03284},
+  year={2020}
 }
 ```
