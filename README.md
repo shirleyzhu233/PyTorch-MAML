@@ -102,10 +102,10 @@ The `-gpu` and `-efficient` tags function similarly as in training.
 ## Cite our Repository
 ```
 @misc{pytorch_maml,
-  author={Fangzhou Mu},
   title={maml in pytorch - re-implementation and beyond},
-  year={2020},
+  author={Fangzhou Mu},
   howpublished={\url{https://github.com/fmu2/PyTorch-MAML}},
+  year={2020}
 }
 ```
 
