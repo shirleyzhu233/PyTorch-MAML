@@ -97,7 +97,7 @@ python test.py --config=configs/convnet4/mini-imagenet/test_reproduce.yaml
 The `-gpu` and `-efficient` tags function similarly as in training.
 
 ## Contact
-[Fangzhou Mu](http://pages.cs.wisc.edu/~fmu/) (fmu2@wisc.edu)
+[Xinchan Zhu](https://www.linkedin.com/in/xinchan-zhu-66673b106) (zhuxinchan@gmail.com)
 
 ## Cite our Repository
 ```
